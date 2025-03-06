@@ -15,7 +15,6 @@ data class UserUseCases(
     val getUserByIdUseCase: GetUserByIdUseCase,
     val getUserByPhoneUseCase: GetUserByPhoneUseCase,
     val loginUseCase: LoginUseCase,
-    val loginByPhoneUseCase: LoginByPhoneUseCase,
     val signUpUseCase: SignUpUseCase,
     val updatePasswordUseCase: UpdatePasswordUseCase,
     val updateUserUseCase: UpdateUserUseCase,

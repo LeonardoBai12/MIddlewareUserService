@@ -6,7 +6,7 @@ import io.ktor.server.sessions.Sessions
 import io.ktor.server.sessions.cookie
 import io.lb.middleware.session.MiddlewareSession
 
-private const val SESSION_NAME = "PokemonSessions"
+private const val SESSION_NAME = "MiddlewareSessions"
 
 fun Application.configureSession() {
     install(Sessions) {

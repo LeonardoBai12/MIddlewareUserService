@@ -1,4 +1,4 @@
-package io.lb.middleware.model
+package io.lb.middleware.security.data.model
 
 import java.io.FileInputStream
 import java.util.Properties
@@ -24,7 +24,7 @@ data class TokenConfig(
             }
 
             return TokenConfig(
-                issuer = "http://0.0.0.0:8080",
+                issuer = "https://projectmiddleware.fly.dev:8080",
                 audience = "users",
                 expiresIn = 365L * 1000L * 60L * 60L * 24L,
                 secret = secret

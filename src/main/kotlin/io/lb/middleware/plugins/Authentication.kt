@@ -7,9 +7,10 @@ import io.ktor.server.auth.authentication
 import io.ktor.server.auth.jwt.JWTPrincipal
 import io.ktor.server.auth.jwt.jwt
 import io.lb.middleware.core.embedded
-import io.lb.middleware.model.TokenConfig
+import io.lb.middleware.security.data.model.TokenConfig
+import io.lb.middleware.user.domain.useCases.UserUseCases
 
-fun Application.configureAuth() {
+fun Application.configureAuth(useCases: UserUseCases) {
     val config = TokenConfig.buildTokenConfig(embedded)
     authentication {
         jwt {
@@ -21,10 +22,22 @@ fun Application.configureAuth() {
                     .build()
             )
             validate { credential ->
-                if (credential.payload.audience.contains(config.audience)) {
+                val userId = credential.payload.getClaim("userId").asString()
+                val email = credential.payload.getClaim("email").asString()
+
+                if (credential.payload.audience.contains(config.audience) && userExists(useCases, userId, email)) {
                     JWTPrincipal(credential.payload)
-                } else null
+                } else {
+                    null
+                }
             }
         }
     }
+}
+
+suspend fun userExists(useCases: UserUseCases, userId: String, email: String): Boolean {
+    val user = runCatching {
+        useCases.getUserByIdUseCase.invoke(userId)
+    }.getOrNull()
+    return user?.email == email
 }

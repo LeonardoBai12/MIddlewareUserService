@@ -1,6 +1,6 @@
 package io.lb.middleware.user.domain.useCases
 
-import io.lb.middleware.model.TokenConfig
+import io.lb.middleware.security.data.model.TokenConfig
 import io.lb.middleware.security.data.model.TokenClaim
 import io.lb.middleware.security.generateToken
 import io.lb.middleware.user.data.model.LoginResponse
@@ -35,10 +35,19 @@ class LoginUseCase(
             token = generateToken(
                 config = tokenConfig,
                 TokenClaim(
-                    name = "userId",
+                    name = USER_ID_CLAIM,
                     value = user.userId
+                ),
+                TokenClaim(
+                    name = EMAIL_CLAIM,
+                    value = user.email
                 )
             )
         )
+    }
+
+    companion object {
+        private const val EMAIL_CLAIM = "email"
+        private const val USER_ID_CLAIM = "userId"
     }
 }

@@ -43,7 +43,7 @@ internal object DatabaseClient {
 }
 
 fun MongoClient.database(): MongoDatabase {
-    val database = getDatabase("PokeMemory")
+    val database = getDatabase("MiddlewareUserService")
 
     database.run {
         runBlocking {
