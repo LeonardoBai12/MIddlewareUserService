@@ -28,7 +28,7 @@ java {
 }
 
 application {
-    mainClass.set("io.lb.midddleware.core.ApplicationKt")
+    mainClass.set("io.lb.middleware.core.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
