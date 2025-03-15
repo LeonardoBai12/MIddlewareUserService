@@ -23,8 +23,11 @@ class UpdateUserUseCase(
      * @param user The update request containing the new user information.
      */
     suspend operator fun invoke(userId: String, user: UserUpdateRequest) {
-        repository.validateEmail(user.email)
         val storedUser = repository.validatePassword(userId, user.password)
+
+        if (storedUser.email != user.email) {
+            repository.validateEmail(user.email)
+        }
 
         if (user.userName != null && user.userName.isBlank()) {
             throw MiddlewareException(HttpStatusCode.Conflict, "User must have a name.")
