@@ -97,7 +97,7 @@ fun Application.userRoutes(
                     )
                 )
 
-                call.respond(HttpStatusCode.OK, response.token)
+                call.respond(HttpStatusCode.OK, response)
             } catch (e: SQLException) {
                 call.respond(HttpStatusCode.Forbidden, e.message.toString())
             } catch (e: MiddlewareException) {
