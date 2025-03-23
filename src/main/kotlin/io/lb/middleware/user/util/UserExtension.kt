@@ -69,8 +69,8 @@ fun String?.isValidEmail(): Boolean {
     return isNotBlank() && matches(emailRegex)
 }
 
-fun String?.isValidPhoneNumber(): Boolean {
-    this ?: return false
-    val phoneRegex = Regex("^\\+[1-9]\\d{1,14}\$")
-    return isNotBlank() && matches(phoneRegex)
+fun String.isValidPhoneNumber(): Boolean {
+    val phoneRegex = "^[0-9]{11}$"
+    return this.matches(phoneRegex.toRegex())
 }
+

@@ -61,12 +61,6 @@ fun Application.userRoutes(
                 call.respond(HttpStatusCode.BadRequest)
                 return@post
             }
-
-            call.sessions.get<MiddlewareSession>()?.let {
-                call.respond(HttpStatusCode.Conflict, "There is already an user logged in.")
-                return@post
-            }
-
             try {
                 val userId = useCases.signUpUseCase(user)
                 call.respond(HttpStatusCode.Created, userId)
@@ -78,11 +72,6 @@ fun Application.userRoutes(
         }
 
         post("/api/login") {
-            call.sessions.get<MiddlewareSession>()?.let {
-                call.respond(HttpStatusCode.Conflict, "There is already an user logged in.")
-                return@post
-            }
-
             val request = call.receiveNullable<LoginRequest>() ?: run {
                 call.respond(HttpStatusCode.BadRequest)
                 return@post
