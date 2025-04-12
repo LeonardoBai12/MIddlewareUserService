@@ -59,6 +59,11 @@ fun String.encrypt(): String? {
     return BCrypt.hashpw(this, salt)
 }
 
+fun String.isStrongPassword(): Boolean {
+    val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!?])(?=\\S+$).{8,}$"
+    return this.matches(passwordRegex.toRegex())
+}
+
 fun String.passwordCheck(encryptedPassword: String): Boolean {
     return BCrypt.checkpw(this, encryptedPassword)
 }

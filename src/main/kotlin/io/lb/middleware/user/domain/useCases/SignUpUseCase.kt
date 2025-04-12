@@ -5,6 +5,7 @@ import io.lb.middleware.user.data.model.UserCreateRequest
 import io.lb.middleware.user.data.model.UserData
 import io.lb.middleware.user.domain.repository.UserRepository
 import io.lb.middleware.user.util.encrypt
+import io.lb.middleware.user.util.isStrongPassword
 import io.lb.middleware.user.util.isValidEmail
 import io.lb.middleware.user.util.isValidPhoneNumber
 import io.lb.middleware.user.util.validateEmail
@@ -44,6 +45,13 @@ class SignUpUseCase(
             throw MiddlewareException(
                 HttpStatusCode.Conflict,
                 "Password must have more than 8 characters."
+            )
+        }
+
+        if (user.password.isStrongPassword().not()) {
+            throw MiddlewareException(
+                HttpStatusCode.Conflict,
+                "Password not strong enough."
             )
         }
 
