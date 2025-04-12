@@ -40,27 +40,6 @@ By separating authentication concerns into a dedicated microservice, the main mi
 * **Kotlin Coroutines**: For efficient asynchronous operations
 * **Kotlin Flow**: Reactive programming for handling data streams
 
-## Architecture
-
-The service follows Clean Architecture principles with distinct layers:
-
-* **Domain Layer**: Contains business entities and use cases independent of external frameworks
-* **Data Layer**: Implements repositories and data sources for user storage
-* **Framework Layer**: Handles HTTP routes, authentication middleware, and external integrations
-
-The service implements orthogonal design as described by Hunt and Thomas, ensuring that "changes in one component don't affect other components" - allowing the authentication service to evolve independently from the main middleware.
-
-## API Endpoints
-
-The MiddlewareUserService exposes several REST endpoints:
-
-* **/signup**: Register a new user account
-* **/login**: Authenticate and receive JWT tokens
-* **/refresh**: Obtain a new access token using a refresh token
-* **/validate**: Validate an existing token
-* **/user/profile**: View and update user profile information
-* **/user/password**: Change user password with security validation
-
 ## How It Integrates with Project Middleware
 
 The MiddlewareUserService operates as a separate microservice that handles all authentication-related tasks for the Project Middleware ecosystem:
