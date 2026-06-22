@@ -8,7 +8,7 @@ By separating authentication concerns into a dedicated microservice, the main mi
 
 ## Official Documentation and Resources
 
-* [Project Middleware Documentation](https://leonardos-organization-15.gitbook.io/projectmiddleware-public-docs)
+* [Project Middleware Documentation](https://leonardobai12.github.io/ProjectMiddleware)
 * [Middleware Backend Repository](https://github.com/LeonardoBai12/ProjectMiddleware)
 * [Middleware Playground App](https://github.com/LeonardoBai12/MiddlewarePlayground/)
 * [Postman Documentation](https://documenter.getpostman.com/view/28162587/2sAXjRX9p1#intro)
